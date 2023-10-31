@@ -18,9 +18,14 @@ const row = (bill) => {
     </tr>
     `)
   }
-
+// ***------------------BUG 1 PART 1 CORRECTION--------------***/
+// EN : addition of antechronological sorting with the "sort" method / FR: ajout du tri antechronologique avec la méthode "sort"
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  return (data && data.length) ? data
+//EN : if the nvl date a is lower than the nvl date b then we will assign 1 to it and if it is higher we will remove 1 from it.
+//FR : si la nvl date a est inférieur à la nvl date b alors on lui affectera 1 et si elle est supérieure on lui retirera 1
+    .sort((a,b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+    .map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {

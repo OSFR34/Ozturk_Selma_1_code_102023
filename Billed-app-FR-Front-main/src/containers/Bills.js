@@ -38,7 +38,10 @@ export default class {
             try {
               return {
                 ...doc,
-                date: formatDate(doc.date),
+//***------------BUG 1 PART 2 CORRECTION------------***/ 
+//line before correction = date: formatDate(doc.date),
+//EN : removing formatDate function - // FR:  retrait de la fonction formatDate
+                date: doc.date, 
                 status: formatStatus(doc.status)
               }
             } catch(e) {
@@ -46,6 +49,7 @@ export default class {
               // log the error and return unformatted date in that case
               console.log(e,'for',doc)
               return {
+                
                 ...doc,
                 date: doc.date,
                 status: formatStatus(doc.status)

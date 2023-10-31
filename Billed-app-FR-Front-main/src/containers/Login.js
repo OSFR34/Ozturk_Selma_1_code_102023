@@ -41,8 +41,13 @@ export default class Login {
     e.preventDefault()
     const user = {
       type: "Admin",
-      email: e.target.querySelector(`input[data-testid="employee-email-input"]`).value,
-      password: e.target.querySelector(`input[data-testid="employee-password-input"]`).value,
+// ******************CORRECTION BUGG 2 LOGIN
+// before correction=  email: e.target.querySelector(`input[data-testid="employee-email-input"]`).value,
+// before correction=  password: e.target.querySelector(`input[data-testid="employee-password-input"]`).value,
+// EN:I modify the value of the data-testid attribute: employee is replaced by admin
+// FR: Je modifie la valeur de l'attribut data-testid :employee est remplacé par admin   
+      email: e.target.querySelector(`input[data-testid="admin-email-input"]`).value,
+      password: e.target.querySelector(`input[data-testid="admin-password-input"]`).value,
       status: "connected"
     }
     this.localStorage.setItem("user", JSON.stringify(user))
