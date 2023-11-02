@@ -1,15 +1,19 @@
 export const formatDate = (dateStr) => {
   // ***-------ADDITION LINES-----***/
- // Convertit la chaîne de caractères 'dateStr' en un objet Date
+// EN :Converts the string 'dateStr' to a Date object
+// FR:Convertit la chaîne de caractères 'dateStr' en un objet Date
  const date = new Date(dateStr);  
- // Applique la méthode ‘toISOString’ pour obtenir une version ISO de la date
+//  EN :"toISOString" allows you to obtain an ISO version of the date
+// FR"toISOString" permet d'obtenir une version ISO de la date
  const isoString = date.toISOString(); 
- // Utilise 'split' pour diviser la chaîne de caractères en deux à l'endroit où se trouve 'T'
+// EN :"split" splits the string in two at the location of 'T'
+//FR:  "split" divise la chaîne de caractères en deux à l'endroit où se trouve 'T'
  const party = isoString.split('T'); 
- // Retourne la première partie de la chaîne divisée, qui représente la date au format "AAAA-MM-JJ"
+//  EN :Returns the first part of the split string, which represents the date in the format "YYYY-MM-DD".
+// FR: Retourne la première partie de la chaîne divisée, qui représente la date au format "AAAA-MM-JJ"
  return party[0];
 }
-
+// ***------------END ADDITION---------***/
  
 export const formatStatus = (status) => {
   switch (status) {
