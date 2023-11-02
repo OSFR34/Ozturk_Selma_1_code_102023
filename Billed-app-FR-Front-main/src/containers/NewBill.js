@@ -24,45 +24,45 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
-/***----------ADD NEXT LINES---------***/
-// EN : Retrieving the file extension - FR: Récupération de l'extension du fichier 
-  const extension = fileName.substring(fileName.lastIndexOf("."));
-  let errorMessageFormat = document.querySelector('#formatAlert');
-  errorMessageFormat.style.display ="none";    
-  const button = document.getElementById("btn-send-bill");
-// EN :"disabled" will be used in the file format condition 
-// FR:"desabled" sera utiliser dans la condition du format de fichier 
-  button.disabled = false;
-//EN : condition of file extension for creating a newbill - FR: condition d'extension de fichiers pour la création d'une nouvelle NDF
-/* istanbul ignore if */
-  if (extension === ".jpg" || extension === ".jpeg" || extension === ".png"){ 
-//***-----END ADDING LINES----***/
-    this.store
-      .bills()
-      .create({
-        data: formData,
-        headers: {
-          noContentType: true
-        }
-      })
-      .then(({fileUrl, key}) => {
-        console.log(fileUrl)
-        this.billId = key
-        this.fileUrl = fileUrl
-        this.fileName = fileName
-      }).catch(error => console.error(error))
- /***----------ADD NEXT LINES---------***/
-  } else {
-    Object.assign(errorMessageFormat.style,{
-      display:"block",
-      color:"red",
-      fontWeight:"bold"
-    });
-// EN : Prevent button use -  FR : Empêche l'utilisation du bouton
-    button.disabled = true;
+  /***----------START ADDITION---------***/
+  // EN : Retrieving the file extension - FR: Récupération de l'extension du fichier 
+    const extension = fileName.substring(fileName.lastIndexOf("."));
+    let errorMessageFormat = document.querySelector('#formatAlert');
+    errorMessageFormat.style.display ="none";    
+    const button = document.getElementById("btn-send-bill");
+  // EN :"disabled" will be used in the file format condition 
+  // FR:"desabled" sera utiliser dans la condition du format de fichier 
+    button.disabled = false;
+  //EN : condition of file extension for creating a newbill - FR: condition d'extension de fichiers pour la création d'une nouvelle NDF
+  /* istanbul ignore if */
+    if (extension === ".jpg" || extension === ".jpeg" || extension === ".png"){ 
+  //***-----END ADDITION----***/
+      this.store
+        .bills()
+        .create({
+          data: formData,
+          headers: {
+            noContentType: true
+          }
+        })
+        .then(({fileUrl, key}) => {
+          console.log(fileUrl)
+          this.billId = key
+          this.fileUrl = fileUrl
+          this.fileName = fileName
+        }).catch(error => console.error(error))
+  /***----------START ADDITION LINES---------***/
+    } else {
+      Object.assign(errorMessageFormat.style,{
+        display:"block",
+        color:"red",
+        fontWeight:"bold"
+      });
+  // EN : Prevent button use -  FR : Empêche l'utilisation du bouton
+      button.disabled = true;
+    }
   }
-}
-//***-----END ADDING LINES----***/
+//***-----END ADDITION LINES----***/
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)

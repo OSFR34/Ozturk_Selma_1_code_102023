@@ -38,10 +38,8 @@ export default class {
             try {
               return {
                 ...doc,
-//***------------BUG 1 PART 2 CORRECTION------------***/ 
-//line before correction = date: formatDate(doc.date),
-//EN : removing formatDate function - // FR:  retrait de la fonction formatDate
-                date: doc.date, 
+
+                date: formatDate(doc.date), 
                 status: formatStatus(doc.status)
               }
             } catch(e) {

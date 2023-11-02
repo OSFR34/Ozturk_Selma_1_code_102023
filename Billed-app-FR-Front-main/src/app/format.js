@@ -1,11 +1,15 @@
 export const formatDate = (dateStr) => {
-  const date = new Date(dateStr)
-  const ye = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(date)
-  const mo = new Intl.DateTimeFormat('fr', { month: 'short' }).format(date)
-  const da = new Intl.DateTimeFormat('fr', { day: '2-digit' }).format(date)
-  const month = mo.charAt(0).toUpperCase() + mo.slice(1)
-  return `${parseInt(da)} ${month.substr(0,3)}. ${ye.toString().substr(2,4)}`
+  // ***-------ADDITION LINES-----***/
+ // Convertit la chaîne de caractères 'dateStr' en un objet Date
+ const date = new Date(dateStr);  
+ // Applique la méthode ‘toISOString’ pour obtenir une version ISO de la date
+ const isoString = date.toISOString(); 
+ // Utilise 'split' pour diviser la chaîne de caractères en deux à l'endroit où se trouve 'T'
+ const party = isoString.split('T'); 
+ // Retourne la première partie de la chaîne divisée, qui représente la date au format "AAAA-MM-JJ"
+ return party[0];
 }
+
  
 export const formatStatus = (status) => {
   switch (status) {
