@@ -53,6 +53,12 @@ export const card = (bill) => {
 }
 
 export const cards = (bills) => {
+  // ***----------ADD ONE LINE SORT---------***/
+  // tri par ordre antichronologique : La méthode sort() utilise le résultat pour déterminer l’ordre de tri :
+// Si le résultat est négatif (< 0), a est trié avant b.
+// Si le résultat est positif (> 0), b est trié avant a.
+// Si le résultat est égal à 0, l’ordre de a et b n’est pas modifié.
+  bills.sort((a, b) => new Date(b.date) - new Date(a.date));
   return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
 }
 
@@ -80,8 +86,10 @@ export default class {
 
   handleClickIconEye = () => {
     const billUrl = $('#icon-eye-d').attr("data-bill-url")
-    const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
-    $('#modaleFileAdmin1').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} alt="Bill"/></div>`)
+    //  ***-------DELETE NEXT LINE-----***/
+    //deleted line  : const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
+    // retrait de la largeur selon le calcul de la fonction imgWidth, remplacé par : img width='100%'.
+    $('#modaleFileAdmin1').find(".modal-body").html(`<div style='text-align: center;'><img width='100%' src=${billUrl} alt="Bill"/></div>`)
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
@@ -146,7 +154,9 @@ export default class {
     }
 
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      // ***---------DELETE NEXT LINE------------***/
+      // $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      $(`#open-bill${bill.id}`).off().on().click((e) => this.handleEditTicket(e, bill, bills))
     })
 
     return bills
