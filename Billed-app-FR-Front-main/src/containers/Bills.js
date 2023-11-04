@@ -24,7 +24,13 @@ export default class {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.4)
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`)
-    $('#modaleFile').modal('show')
+    // ***-------- MODIFIED VERSION ---------***/
+    // old version --> $('#modaleFile').modal('show')
+    //-------- new version-----------
+    // changement : typeof $('modaleFile').modal renvoie le type de la méthode modal, qui devrait être 'function' si la méthode existe.
+    if (typeof $('modaleFile').modal === 'function') {
+          $('#modaleFile').modal('show')
+    }
   }
 
   getBills = () => {
