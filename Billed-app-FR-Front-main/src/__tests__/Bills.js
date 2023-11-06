@@ -6,7 +6,7 @@
 /*-------ADDING THE FOLLOWING LINE------*/
 import "@testing-library/jest-dom";
 // screen permet de sélectionner des éléments qu'on un attribut spécifique)
-import { screen, waitFor } from "@testing-library/dom";
+import { screen, waitFor} from "@testing-library/dom";
 /*-------ADDING THE FOLLOWING LINE------*/
 //permet la simulation des interactions des utilisateurs avec le DOM.
 import userEvent from "@testing-library/user-event";
@@ -86,8 +86,8 @@ describe("Given I am connected as an employee", () => {
       const newBillPageHeader = screen.queryByText("Envoyer une note de frais");
       expect(newBillPageHeader).toBeTruthy();
       document.body.innerHTML = "";
-      });
-    })
+    });
+  });
 
   ///--------------- TEST n° 2 ----------------///
   describe('When I click on the eye icon to display the bill', () => { 
@@ -182,5 +182,10 @@ describe("Given I am connected as an employee", () => {
   });
 });
     
+
+
+
+
+ 
 
 

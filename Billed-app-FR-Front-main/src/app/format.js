@@ -1,8 +1,8 @@
-export const formatDate = (dateStr) => {
-  // ***-------ADDITION LINES-----***/
+export const formatDate = (dateIso) => {
+  // ***-------MODIFICATIONS LINES-----***/
 // EN :Converts the string 'dateStr' to a Date object
 // FR:Convertit la chaîne de caractères 'dateStr' en un objet Date
- const date = new Date(dateStr);  
+ const date = new Date(dateIso);  
 //  EN :"toISOString" allows you to obtain an ISO version of the date
 // FR"toISOString" permet d'obtenir une version ISO de la date
  const isoString = date.toISOString(); 
@@ -13,7 +13,7 @@ export const formatDate = (dateStr) => {
 // FR: Retourne la première partie de la chaîne divisée, qui représente la date au format "AAAA-MM-JJ"
  return party[0];
 }
-// ***------------END ADDITION---------***/
+// ***------------END MODIFICATIONS---------***/
  
 export const formatStatus = (status) => {
   switch (status) {
