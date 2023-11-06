@@ -33,15 +33,15 @@ describe("Given I am connected as an employee", () => {
 
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
       window.localStorage.setItem('user', JSON.stringify({
-        type: 'Employee'
-      }))
-      const root = document.createElement("div")
-      root.setAttribute("id", "root")
-      document.body.append(root)
-      router()
+        type: 'Employee'})
+        );
+      const root = document.createElement("div");
+      root.setAttribute("id", "root");
+      document.body.append(root);
+      router();
       window.onNavigate(ROUTES_PATH.Bills)
-      await waitFor(() => screen.getByTestId('icon-window'))
-      const windowIcon = screen.getByTestId('icon-window')
+      await waitFor(() => screen.getByTestId('icon-window'));
+      const windowIcon = screen.getByTestId('icon-window');
 
       // ***------ADD NEXT LINE------***/
       // teste si la classe “active-icon” fait partie des classes de l’élément windowIcon.
@@ -123,7 +123,7 @@ describe("Given I am connected as an employee", () => {
       eyeIcon.addEventListener('click', (e) => handleClickIconEye(eyeIcon))
       ); 
       userEvent.click(eyeIconGroup[0]); 
-      // expect(handleClickIconEye).toHaveBeenCalled();
+      expect(handleClickIconEye).toHaveBeenCalled();
       await waitFor(() => document.getElementById("modaleFile"));
       expect(handleClickIconEye).toHaveBeenCalled();
       const modal = document.getElementById('modaleFile');
@@ -134,7 +134,7 @@ describe("Given I am connected as an employee", () => {
   ///-------------- TEST n° 3 et 4 ----------------/// 
 describe("Given I am connected as an employee", () => { 
   describe("When an error occurs on API", () => {
-    /*--- Préparation de l'environnement des tests 3 et 4---*/
+    /*--- Preparing the environment for tests 3 and 4--*/
     beforeEach(() => {
       jest.spyOn(mockStore, "bills");
       Object.defineProperty(window,"localStorage",{ 
@@ -150,6 +150,7 @@ describe("Given I am connected as an employee", () => {
       document.body.appendChild(root);
       router();
     });
+    /*---------- End of preparation-------------*/
     test("fetches bills from an API and fails with 404 message error", async () => {
 
       mockStore.bills.mockImplementationOnce(() => {
