@@ -52,6 +52,7 @@ export default class Login {
     }
     this.localStorage.setItem("user", JSON.stringify(user))
     this.login(user)
+    // comme catch gérer des erreurs provenant de sources externes, soit par la méthode login ou par la méthode createUser. Nous pouvons utiliser l'instruction : /* istanbul ignore next */ pour éviter de fausser le résultat des tests.
       .catch(
         (err) => this.createUser(user)
       )
@@ -64,6 +65,7 @@ export default class Login {
   }
 
   // not need to cover this function by tests
+  // /* istanbul ignore next */
   login = (user) => {
     if (this.store) {
       return this.store
@@ -79,6 +81,7 @@ export default class Login {
   }
 
   // not need to cover this function by tests
+  // /* istanbul ignore next */
   createUser = (user) => {
     if (this.store) {
       return this.store
