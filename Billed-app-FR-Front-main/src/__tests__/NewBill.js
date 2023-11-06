@@ -91,16 +91,12 @@ describe("Given I am connected as an employee", () => {
     });
   });
   // -----------Test 4-----------
-  // FR :lorsque je télécharge un fichier avec le mauvais format
-  describe("when I upload a file with the wrong format", () => {
-    // FR : alors je devrais rester sur la nouvelle page Bill
+  describe("when I load a file with the wrong format", () => {
     test("then I should stay on new Bill page", async () => {
       document.body.innerHTML = NewBillUI();
       const onNavigate = (pathname) => {
-      // ds document,j'appel la proprité le body, applique la propriété innerHTML (récupère du HTML) ici il récupère celui de la fct route avec son paramètre pathname. 
         document.body.innerHTML = ROUTES({ pathname });
       };
-      // newBill est instance de la class NewBill, pour y accéder au sein du test, *1 
       const newBill = new NewBill({
         document,
         onNavigate,
@@ -108,20 +104,15 @@ describe("Given I am connected as an employee", () => {
         localStorage: window.localStorage,
       });
 
-      const file = new File(["hello"], "hello.txt", { type: "document/txt" });
-      // stockage en sélectionnant id test "file" qui correspond à l'input pour télécharger la pièce jointe .
+      const file = new File(["format not accepted"], "format not accepted.txt", { type: "document/txt" });
       const inputFile = screen.getByTestId("file");
-      // ....................= j'appelle fct espionne qui va espionner le handleChangeFile dans la class newBill
       const handleChangeFile = jest.fn((e) => newBill.handleChangeFile(e));
       inputFile.addEventListener("change", handleChangeFile);
-      // fireEvent simulateur est utilisé içi à la place de userEvent car il permet de ne se concentrer que sur l'événement "change" (sans se préoccuper des événements juste avant le change)
-      // paramètre de change (inputFile qui correspond à mon input qui me permet d'ajouter une pièe-jointe,{j'appelle la propriété files préexistante à l'input de type file, entre crochet, je place le fichier déclaré plus haut (création d'un fichier texte spécialement pour effectuer le test) }
+    
       fireEvent.change(inputFile, { target: { files: [file] } });
       const form = screen.getByTestId("form-new-bill");
-      // controle si la fct "handleChangeFile" est bien appelée       
       expect(handleChangeFile).toHaveBeenCalled();
-      //je test ds inputFile() = input de téléchargement), j'appelle la propriété files et je récupère la PJ dont l'index 0 et je récupère la propriété type de ma premère PJ.
-      //toBe doit être de type txt. 
+      
       expect(inputFile.files[0].type).toBe("document/txt");      
       expect(form).toBeTruthy();
     });
@@ -138,22 +129,16 @@ describe("Given I am connected as an employee", () => {
         localStorage: window.localStorage,
       });
 
-      // Create file document PDF
-      const file = new File(["doc"], "doc.pdf", { type: "document/pdf" });
-      // Get input to upluoad my file
+      const file = new File(["invalid format"], "invalid format.pdf", { type: "document/pdf" });
       const inputFile = screen.getByTestId("file");
-      // Create spy function to check handleChangeFile has been called
       const handleChangeFile = jest.fn((e) => newBill.handleChangeFile(e));
-      // Add Event change to inputFile
       inputFile.addEventListener("change", handleChangeFile);
-      // Simulate user change
+     
       fireEvent.change(inputFile, { target: { files: [file] } });
-      // Get my error message
+     
       let errorMessage = screen.getByTestId('error-message');
       expect(errorMessage.textContent).toEqual(
-        expect.stringContaining(
-          "Merci de choisir un fichier avec l'un de ces formats : jpg , jpeg , png."
-        )
+        expect.stringContaining("Merci de choisir un fichier avec l'un de ces formats : jpg , jpeg , png.")
       )
     });  
   });
