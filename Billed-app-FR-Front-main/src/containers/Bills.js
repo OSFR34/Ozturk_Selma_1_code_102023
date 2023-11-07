@@ -27,7 +27,7 @@ export default class {
     // ***-------- MODIFIED VERSION ---------***/
     // old version --> $('#modaleFile').modal('show')
     //-------- new version-----------
-    // changement : typeof $('modaleFile').modal renvoie le type de la méthode modal, qui devrait être 'function' si la méthode existe.
+    // changement : si le type modal est une fonction alors la modal s'affichera. 
     if (typeof $('modaleFile').modal === 'function') {
           $('#modaleFile').modal('show')
     }

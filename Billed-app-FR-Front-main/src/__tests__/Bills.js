@@ -69,7 +69,7 @@ describe("Given I am connected as an employee", () => {
         value: localStorageMock,
       });
       window.localStorage.setItem("user", JSON.stringify({ type: "Employee" }));        
-      const billS = new Bills({
+      const myBills = new Bills({
       document, 
       onNavigate, 
       store: mockStore, 
@@ -78,7 +78,7 @@ describe("Given I am connected as an employee", () => {
       });
       document.body.innerHTML = BillsUI({data : bills}); 
       /*--- Fin de la préparation de l'environnement ---*/
-      const MockHandleClickNewBill = jest.fn((e) => billS.handleClickNewBill(e)); 
+      const MockHandleClickNewBill = jest.fn((e) => myBills.handleClickNewBill(e)); 
       const newBillBtn = screen.getByText('Nouvelle note de frais'); 
       newBillBtn.addEventListener("click", MockHandleClickNewBill); 
       newBillBtn.click();
@@ -108,7 +108,7 @@ describe("Given I am connected as an employee", () => {
       document.body.innerHTML = ROUTES({ pathname })
       };
       
-      const billS = new Bills({
+      const myBills = new Bills({
         document,
         onNavigate,
         store: null,
@@ -116,7 +116,7 @@ describe("Given I am connected as an employee", () => {
         localStorage: window.localStorage,
       });
       const handleClickIconEye = jest.fn((icon) =>
-        billS.handleClickIconEye(icon)
+        myBills.handleClickIconEye(icon)
       );
       const eyeIconGroup = screen.getAllByTestId("icon-eye");
       eyeIconGroup.forEach((eyeIcon) =>
@@ -161,6 +161,8 @@ describe("Given I am connected as an employee", () => {
         };
       });
       window.onNavigate(ROUTES_PATH.Bills);
+      // "process.nextTick" fct Node.js : permet d’attendre que toutes les promesses 
+      // en attente soient résolues avant de vérifier les résultats du test.
       await new Promise(process.nextTick);
       const message = screen.getByText(/Erreur 404/);
       expect(message).toBeTruthy();

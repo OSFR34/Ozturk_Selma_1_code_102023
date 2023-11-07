@@ -3,7 +3,7 @@
  */
 import "@testing-library/dom"
 /*------ AJOUT DANS LA LIGNES SUIVANTE-----------*/
-// ajout des methodes fireEvent (= utiliser pour simuler des événements DOM)et waitFor (=utiliser pour traiter le code asynchrone)
+
 // import { screen } from "@testing-library/dom"
 import {fireEvent, screen, waitFor } from "@testing-library/dom"
 import NewBillUI from "../views/NewBillUI.js"
@@ -13,13 +13,7 @@ import { ROUTES, ROUTES_PATH } from "../constants/routes";
 import { localStorageMock } from "../__mocks__/localStorage.js";
 import mockStore from "../__mocks__/store";
 import router from "../app/Router";
-// différence userEvent simule des évéments complets (ex: chaine d'évènements) contrairement à fireEvent qui ne traite que d'événement unique.
-import userEvent from "@testing-library/user-event";
-// Import BillsUI this function create html of Bills page
-import BillsUI from "../views/BillsUI.js";
-import "@testing-library/jest-dom";
-// datas fictives pour test
-import { bills } from "../fixtures/bills.js";
+
 // FIN DES IMPORTS RAJOUTES
 
 /*------ AJOUT De LA LIGNE SUIVANTE-----------*/
@@ -138,7 +132,7 @@ describe("Given I am connected as an employee", () => {
      
       let errorMessage = screen.getByTestId('error-message');
       expect(errorMessage.textContent).toEqual(
-        expect.stringContaining("Merci de choisir un fichier avec l'un de ces formats : jpg , jpeg , png.")
+      expect.stringContaining("Merci de choisir un fichier avec l'un de ces formats : jpg , jpeg , png.")
       )
     });  
   });

@@ -22,8 +22,9 @@ const row = (bill) => {
 // EN : addition of antechronological sorting with the "sort" method / FR: ajout du tri antechronologique avec la méthode "sort"
 const rows = (data) => {
   return (data && data.length) ? data
-//EN : if the nvl date a is lower than the nvl date b then we will assign 1 to it and if it is higher we will remove 1 from it.
-//FR : si la nvl date a est inférieur à la nvl date b alors on lui affectera 1 et si elle est supérieure on lui affectera - 1
+//EN : if the date “a” is earlier than the date “b” then “a” is placed after “b” and if it is later then it is placed before “b”
+//FR :  si la date « a » est antérieur à la date « b » alors « a » est placé après « b » et si elle est postérieur alors elle est placé avant « b ».
+
     .sort((a,b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
     .map(bill => row(bill)).join("") : ""
 }
