@@ -17,7 +17,6 @@ import { bills } from "../fixtures/bills.js";
 import { ROUTES_PATH } from "../constants/routes.js";
 import { localStorageMock } from "../__mocks__/localStorage.js";
 /*-------ADDING THE FOLLOWING LINE------*/
-// fichier avec toutes les bills fictives
 import mockStore from "../__mocks__/store.js";
 /*-------ADDING THE FOLLOWING LINE------*/
 import { ROUTES } from "../constants/routes.js";
@@ -161,8 +160,8 @@ describe("Given I am connected as an employee", () => {
         };
       });
       window.onNavigate(ROUTES_PATH.Bills);
-      // "process.nextTick" fct Node.js : permet d’attendre que toutes les promesses 
-      // en attente soient résolues avant de vérifier les résultats du test.
+      /* "process.nextTick" fct Node.js : permet d’attendre que toutes les promesses 
+       en attente soient résolues avant de vérifier les résultats du test.*/
       await new Promise(process.nextTick);
       const message = screen.getByText(/Erreur 404/);
       expect(message).toBeTruthy();
@@ -181,7 +180,7 @@ describe("Given I am connected as an employee", () => {
       const message = screen.getByText(/Erreur 500/);
       expect(message).toBeTruthy();
     });
-  });
+  });  
 });
     
 

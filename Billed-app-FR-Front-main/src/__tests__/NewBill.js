@@ -1,27 +1,25 @@
 /**
  * @jest-environment jsdom
  */
-import "@testing-library/dom"
-/*------ AJOUT DANS LA LIGNES SUIVANTE-----------*/
-
-// import { screen } from "@testing-library/dom"
+/*------ MODIFICATIONS NEXT LINES-----------*/
+import "@testing-library/jest-dom"
 import {fireEvent, screen, waitFor } from "@testing-library/dom"
+/*------ END MODIFICATIONS ---------*/
 import NewBillUI from "../views/NewBillUI.js"
 import NewBill from "../containers/NewBill.js"
-/*------ *AJOUT DES LIGNES SUIVANTES*-----------*/
+/*------ ADD NEXT LINES-----------*/
 import { ROUTES, ROUTES_PATH } from "../constants/routes";
 import { localStorageMock } from "../__mocks__/localStorage.js";
 import mockStore from "../__mocks__/store";
 import router from "../app/Router";
+/*------ END ADD LINES-----------*/
 
-// FIN DES IMPORTS RAJOUTES
-
-/*------ AJOUT De LA LIGNE SUIVANTE-----------*/
+/*------ ADD NEXT LINE-----------*/
 jest.mock("../app/store", () => mockStore);
 
 
 describe("Given I am connected as an employee", () => {
-  /*---------AJOUT ENVIRONNEMENT (PREPARATION) POUR LA CREATION DE TESTS------------------*/
+  /*---PREPARATION ENVIRONNEMENT---*/
   Object.defineProperty(window, "localStorage", {
     value: localStorageMock,
   });
@@ -35,7 +33,7 @@ describe("Given I am connected as an employee", () => {
   root.setAttribute("id", "root");
   document.body.append(root);
   router();
-  /*---------FIN AJOUT ENVIRONNEMENT (PREPARATION) POUR LA CREATION DE TESTS------------------*/
+ /*---END OF PREPARATION---*/
 
   // -----------Test 1-----------
   describe("When I am on NewBill Page", () => {

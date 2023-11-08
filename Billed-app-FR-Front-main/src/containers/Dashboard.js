@@ -156,7 +156,7 @@ export default class {
     bills.forEach(bill => {
       // ***---------DELETE NEXT LINE------------***/
       // $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-      // ajout off() et on() pour déasctiver er réactiver le gestionnaire d'évèment.
+      // ajout off() et on() pour déasctiver et réactiver le gestionnaire d'évèment du clic
       $(`#open-bill${bill.id}`).off().on().click((e) => this.handleEditTicket(e, bill, bills))
     })
 
