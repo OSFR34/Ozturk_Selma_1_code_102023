@@ -22,10 +22,8 @@ export default class {
 
   handleClickIconEye = (icon) => {
     const billUrl = icon.getAttribute("data-bill-url")
-    //  ***-------DELETE NEXT LINE-----***/
-    //EN : deleted line  : const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
-    // FR: retrait de la largeur selon le calcul de la fonction imgWidth, remplacé par : img width='100%'.
-    $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width='100%' src=${billUrl} alt="Bill" /></div>`)
+    const imgWidth = Math.floor($('#modaleFile').width() * 0.4)
+    $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`)
     // ***-------- MODIFIED VERSION ---------***/
     // old version --> $('#modaleFile').modal('show')
     //-------- new version-----------
